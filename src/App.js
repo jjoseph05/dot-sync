@@ -3,7 +3,8 @@ import { getTestCoords } from './utils/firebase'
 
 function App() {
   console.log('this is the first test');
-  getTestCoords();
+  const coords = getTestCoords();
+  console.log('cords', coords);
 
   return (
     <div className="App">

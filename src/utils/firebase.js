@@ -22,15 +22,18 @@ const database = getDatabase(app);
 
 const dbRef = ref(database);
 const getTestCoords = () => {
+  const coordData = [];
   get(child(dbRef, `users/john`)).then((snapshot) => {
     if (snapshot.exists()) {
       console.log(snapshot.val());
+      coordData.push(snapshot.val());
     } else {
       console.log("No data available");
     }
   }).catch((error) => {
     console.error(error);
   });
+  return coordData;
 }
 
 
