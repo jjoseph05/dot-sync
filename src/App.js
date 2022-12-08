@@ -30,6 +30,7 @@ function App() {
     const coordinates = ref(database, `users/john`);
     onValue(coordinates, (snapshot) => {
       const data = snapshot.val();
+      console.log("sycho", data);
       setLatestPosition(data);
       // console.log('strar syc7',data);
     });
@@ -48,8 +49,8 @@ function App() {
   return (
     <div className="App">
       <h2>Hello, dot-sync</h2>
-      {coordinateslist
-        ? coordinateslist.map((coordinate) => {console.log('okkk',coordinate)})
+      {latestPosition
+        ? <p>x {latestPosition.x}, y {latestPosition.y}</p>
         : <p>fuccck</p>}
     </div>
   );
