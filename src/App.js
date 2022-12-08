@@ -1,14 +1,16 @@
 import './App.css';
 import firebase from './utils/firebase';
 import {useEffect, useState} from 'react';
-import { getDatabase, ref, child, get, onValue } from "firebase/database";
-
+import { getDatabase, ref, child, get, onValue, set } from "firebase/database";
 
 function App() {
   const [coordinateslist, setCoordinateslist] = useState();
   const [latestPosition, setLatestPosition] = useState();
+  const [movedToXy, setMovedToXy] = useState();
   const database = getDatabase(firebase);
 
+
+  //Get - read data once
   useEffect(() =>{
     const coordinateRef = ref(database);
     let coordData = [];
@@ -25,6 +27,7 @@ function App() {
     setCoordinateslist(coordData);
   }, [database])
 
+  //onvalue listend for events
   useEffect(() =>{
     // let coordSyncData = [];
     const coordinates = ref(database, `users/john`);
@@ -38,6 +41,23 @@ function App() {
     // setCoordinateslist(coordData);
   }, [database])
 
+  useEffect(() =>{
+    // function writeUserData(userId, name, email, imageUrl) {
+      console.log('it was me. the post pusher.');
+      console.log(movedToXy);
+      const db = getDatabase();
+      set(ref(db, 'users/john'), {
+        x: movedToXy.x,
+        y: movedToXy.y
+      });
+    // }
+  }, [movedToXy])
+
+  const handleClick = (e) => {
+    console.log("I clicked ", e);
+    setMovedToXy({ x:e.pageX, y:e.pageY});
+  }
+
   console.log('this is the first test');
   console.log('cords', coordinateslist);
   console.log('pozition-realtime', latestPosition);
@@ -47,8 +67,9 @@ function App() {
   // console.log('y', y);
 
   return (
-    <div className="App">
+    <div onClick={handleClick} className="App" style={{ backgroundColor: 'brown', width: '100%', height: '500px'}}>
       <h2>Hello, dot-sync</h2>
+
       {latestPosition
         ? <p>x {latestPosition.x}, y {latestPosition.y}</p>
         : <p>fuccck</p>}
