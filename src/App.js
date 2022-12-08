@@ -6,7 +6,7 @@ import { getDatabase, ref, child, get, onValue, set } from "firebase/database";
 function App() {
   const [coordinateslist, setCoordinateslist] = useState();
   const [latestPosition, setLatestPosition] = useState();
-  const [movedToXy, setMovedToXy] = useState();
+  const [movedToXy, setMovedToXy] = useState({x:0, y:1});
   const database = getDatabase(firebase);
 
 
@@ -69,10 +69,19 @@ function App() {
   return (
     <div onClick={handleClick} className="App" style={{ backgroundColor: 'brown', width: '100%', height: '500px'}}>
       <h2>Hello, dot-sync</h2>
-
+      <div
+        id="theDot"
+        style={{
+          width: '10px',
+          height: '10px',
+          borderRadius: '50%',
+          border: '2px solid black',
+          backgroundColor: 'white'
+        }}>
+      </div>
       {latestPosition
         ? <p>x {latestPosition.x}, y {latestPosition.y}</p>
-        : <p>fuccck</p>}
+        : <p>oops, something broke</p>}
     </div>
   );
 }
