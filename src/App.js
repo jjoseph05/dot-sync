@@ -35,10 +35,10 @@ function App() {
   }, [translate])
 
   useEffect(() => {
-    window.addEventListener('mouseup', handlePointerUp);
+    window.addEventListener('pointerup', handlePointerUp);
 
     return () => {
-      window.removeEventListener('mouseup', handlePointerUp);
+      window.removeEventListener('pointerup', handlePointerUp);
     };
   }, [isDragging]);
 
@@ -65,14 +65,14 @@ function App() {
   let postion = isDragging ? translate : remoteTranslate;
   return (
     <div
-      onMouseMove={handlePointerMove}
+      onPointerMove={handlePointerMove}
       className="App"
       style={{ backgroundColor: 'brown', width: '100%', minHeight: '1024px'}}
     >
       <h2>Hello, dot-sync</h2>
         <div
           ref={dotRef}
-          onMouseDown={handlePointerDown}
+          onPointerDown={handlePointerDown}
           style={{
             backgroundColor: 'white',
             border: '2px solid black',
