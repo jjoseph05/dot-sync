@@ -46,7 +46,11 @@ function App() {
   };
 
   const handlePointerDown = (e) => {
-    console.log(e);
+    // When remote client initiates drag after dotPosition has been updated
+    // dotPosition is not fully in sync with remoteDotPosition causing a jump when clicking
+    // this resolves that, though it feels like a workaround
+    // intuition says there is a more optimal solution for this
+    setDotPosition({ x: remoteDotPosition.x , y: remoteDotPosition.y });
     setIsDragging(true);
   }
 
