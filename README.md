@@ -6,4 +6,4 @@ A simple app that sync the dragging of a dot between browsers
 
 ### Instructions
 - Open the url in at least 2 browsers (on the same pc, or send the link to a friend or 3 😀)
-- Drag the dot, dot position will sync with any other browsers open with the same url
+- Drag the dot in one browser, dot position will sync with any other browsers open with the same url
