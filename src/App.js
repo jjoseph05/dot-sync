@@ -67,7 +67,7 @@ function App() {
     <div
       onMouseMove={handlePointerMove}
       className="App"
-      style={{ backgroundColor: 'brown', width: '100%', height: '500px'}}
+      style={{ backgroundColor: 'brown', width: '100%', minHeight: '1024px'}}
     >
       <h2>Hello, dot-sync</h2>
         <div
@@ -86,8 +86,8 @@ function App() {
           }}>
         </div>
       {postion
-        ? <p>x: {postion.x}, y {postion.y }, driverStatus: {!!postion.driver ? 'you be driving' : 'sitting shotgun'}</p>
-        : <p>oops, something broke</p>}
+        ? <p>x: {postion.x}, y: {postion.y }</p>
+        : <p>loading initial coordinates</p>}
     </div>
   );
 }
